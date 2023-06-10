@@ -18,16 +18,36 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         return console.log(`${playerSelection} and ${computerSelection.toLowerCase()}! This is a tie!`);
     }
-    let player = changeToNumbers(playerSelection);
-    let computer = changeToNumbers(computerSelection);
-    console.log(player, computer);
+    let result = isPlayerWinner(playerSelection, computerSelection);
+    console.log(result);
         return false;
     
 }
 
 // to compare numbers instead of strings. -1 is Scissors
-function changeToNumbers(selection) {
-    return (selection == "Rock") ? 0 : ((selection == "Paper") ? 1 : -1);
+function isPlayerWinner(player, computer) {
+    let temPlayer = 0;
+    let temComputer;
+    if (player == "Rock") {
+        if (computer == "Paper") {
+            temComputer = 1;
+        } else {
+            temComputer = -1;
+        }
+    } else if (player == "Paper") {
+        if (computer == "Scissors") {
+            temComputer = 1;
+        } else {
+            temComputer = -1;
+        }
+    } else {
+        if (computer == "Rock") {
+            temComputer = 1;
+        } else {
+            temComputer = -1;
+        }
+    }
+    return temPlayer > temComputer;
 }
 
 
