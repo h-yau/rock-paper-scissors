@@ -91,3 +91,13 @@ function game(rounds) {
 
 // insert argument to determine how many games to play
 game(1);
+
+
+// pass function to pass test
+function pass() {
+    alert("Pass!");
+}
+
+// now to add eventlisteners for each button
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener("click", pass));
