@@ -89,4 +89,5 @@ function game(rounds) {
     }
 }
 
-game(5);
+// insert argument to determine how many games to play
+game(1);
