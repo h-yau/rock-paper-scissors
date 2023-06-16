@@ -57,22 +57,27 @@ function playRound(playerSelection, computerSelection) {
     }
     let result = isPlayerWinner(playerSelection, computerSelection);
     if (result) {
-        alert(`You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`);
+        // alert(`You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`);
         console.log(`You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`);
         return 1;
     } else {
-        alert(`You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
-        console.log(`You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
+        // alert(`You lost! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
+        console.log(`You lost! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
         return -1;
     }
     
 }
 
-function game(rounds) {
-    alert("Welcome! Let's play 5 rounds of rock paper scissors! Shall we begin?");
+function game(rounds, playerSelection) {
     let roundResult = 0;
     for (i = 0; i < rounds; i++) {
-        let playerSelection = getPlayerChoice();
+        let validSelections = ["rock", "paper", "scissors"];
+        console.log(playerSelection);
+        console.log(validSelections);
+        if (!validSelections.includes(playerSelection)) {
+            alert("No!");
+            return;
+        }
         let computerSelection = getComputerChoice();
         roundResult += playRound(playerSelection, computerSelection);
         ///////// need to work on keeping track of the loop
@@ -80,17 +85,17 @@ function game(rounds) {
             alert(`${rounds - 1 - i} more rounds to go! Let'keep going!`);
         }
     }
-    if (roundResult > 0) {
-        alert("Haha! You lost!");
+    if (roundResult < 0) {
+        // alert("Haha! You lost!");
         console.log("Haha! You lost!");
     } else {
-        alert("Man, that was tough! Seems like you won! Congratulations!");
+        // alert("Man, that was tough! Seems like you won! Congratulations!");
         console.log("Man, that was tough! Seems like you won! Congratulations!");
     }
 }
 
 // insert argument to determine how many games to play
-game(1);
+// game(1);
 
 
 
@@ -98,4 +103,6 @@ game(1);
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener("click", function(e) {
     console.log(e.target.id);
+    game(1, e.target.id);
 }));
+
