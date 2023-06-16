@@ -93,11 +93,9 @@ function game(rounds) {
 game(1);
 
 
-// pass function to pass test
-function pass() {
-    alert("Pass!");
-}
 
 // now to add eventlisteners for each button
 const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener("click", pass));
+buttons.forEach(button => button.addEventListener("click", function(e) {
+    console.log(e.target.id);
+}));
