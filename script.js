@@ -71,50 +71,49 @@ function playRound(playerSelection, computerSelection) {
     }   
 }
 
-function printResult(roundResult) {
-    if(document.querySelector("#results") === null) {
+function printResult(gameResult) {
+    if(document.querySelector("#gameResults") === null) {
         const div = document.createElement('div');
-        div.setAttribute("id", "results");
+        div.setAttribute("id", "gameResults");
         document.body.appendChild(div);
     }
-    const results = document.querySelector("#results");
-    if (roundResult < 0) {
-        results.textContent = "Haha! You lost!";
-    } else if (roundResult > 0){
+    const results = document.querySelector("#gameResults");
+    if (gameResult) {
         results.textContent = "Man, that was tough! Seems like you won! Congratulations!";
     } else {
-        results.textContent = "Draw!";
+        results.textContent = "Haha! You lost!";
+ 
     }
-
 }
 
 
 // Accepts input to determine how many rounds in a game, then play
-function game(rounds, playerSelection) {
-    let roundResult = 0;
-    for (i = 0; i < rounds; i++) {
-        let validSelections = ["rock", "paper", "scissors"];
-        console.log(playerSelection);
-        if (!validSelections.includes(playerSelection)) {
-            alert("No!");
-            return;
-        }
-        let computerSelection = getComputerChoice();
-        console.log(computerSelection);
-        roundResult += playRound(playerSelection, computerSelection);
-        ///////// need to work on keeping track of the loop
-        if (i != (rounds - 1)) {
-            alert(`${rounds - 1 - i} more rounds to go! Let'keep going!`);
-        }
+function game(playerSelection) {
+    let validSelections = ["rock", "paper", "scissors"];
+    if (!validSelections.includes(playerSelection)) {
+        alert("No!");
+        return;
     }
-    printResult(roundResult);
+    let computerSelection = getComputerChoice();
+    return playRound(playerSelection, computerSelection);
 }
 
 
 
 // now to add eventlisteners for each button
+let playerPoints = computerPoints = 0;
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener("click", function(e) {
-    game(1, e.target.id);
-}));
+    roundResult = game(e.target.id);
+    console.log(roundResult);
+    if (roundResult < 0) {
+        computerPoints++;
+    } else if (roundResult > 0) {
+        playerPoints++;
+    }
 
+    console.log(`Player: ${playerPoints}, Computer: ${computerPoints}`)
+    if (playerPoints >= 5 || computerPoints >= 5) {
+        printResult(playerPoints > computerPoints);
+    }
+}));
