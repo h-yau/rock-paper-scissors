@@ -98,6 +98,19 @@ function game(playerSelection) {
     return playRound(playerSelection, computerSelection);
 }
 
+function clearGameData (event) {
+    let click = event.target;
+    if (click.id != "replay") {
+        return;
+    }
+    let gameResults = document.getElementById("gameResults");
+    let replay = document.getElementById("replay");
+    console.log(gameResults, replay);
+    document.body.removeChild(gameResults);
+    document.body.removeChild(replay);
+    playerPoints = computerPoints = 0;
+}
+
 
 
 // now to add eventlisteners for each button
@@ -115,5 +128,12 @@ buttons.forEach(button => button.addEventListener("click", function(e) {
     console.log(`Player: ${playerPoints}, Computer: ${computerPoints}`)
     if (playerPoints >= 5 || computerPoints >= 5) {
         printResult(playerPoints > computerPoints);
+        const replay = document.createElement("button");
+        replay.setAttribute("id", "replay");
+        replay.textContent = "Play another round?";
+        document.body.appendChild(replay);
+        buttons.forEach(button => button.setAttribute("disabled", "true"));
     }
 }));
+const replay = document.querySelector("#replay");
+document.addEventListener("click", clearGameData);
