@@ -109,6 +109,8 @@ function clearGameData (event) {
     document.body.removeChild(gameResults);
     document.body.removeChild(replay);
     playerPoints = computerPoints = 0;
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.disabled = false);
 }
 
 
