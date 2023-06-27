@@ -109,7 +109,7 @@ function clearGameData (event) {
     document.body.removeChild(gameResults);
     document.body.removeChild(replay);
     playerPoints = computerPoints = 0;
-    const buttons = document.querySelectorAll('button');
+    const buttons = document.querySelectorAll('input');
     buttons.forEach(button => button.toggleAttribute("disabled"));
 }
 
@@ -117,7 +117,7 @@ function clearGameData (event) {
 
 // now to add eventlisteners for each button
 let playerPoints = computerPoints = 0;
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('input');
 buttons.forEach(button => button.addEventListener("click", function(e) {
     roundResult = game(e.target.id);
     console.log(roundResult);
