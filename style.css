@@ -26,7 +26,8 @@ h1 {
 }
 
 .selection {
-    min-width: 15rem;
+    max-width: 15rem;
+    min-height: 20rem;
     border: solid;
     border-color: gainsboro;
 }

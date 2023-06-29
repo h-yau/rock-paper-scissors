@@ -17,10 +17,13 @@ function getPlayerChoice() {
 function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3);
     if (compChoice === 0) {
+        document.querySelector("#computerSelection").src = "./images/rock.svg";
         return "Rock";
     } else if (compChoice === 1) {
+        document.querySelector("#computerSelection").src = "./images/paper.svg";
         return "Paper";
     } else {
+        document.querySelector("#computerSelection").src = "./images/scissors.svg";
         return "Scissors";
     }
 }
@@ -56,16 +59,17 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
     if (playerSelection == computerSelection) {
+        document.querySelector("#roundResult").textContent = `${playerSelection} and ${computerSelection.toLowerCase()}! This is a tie!`;
         console.log(`${playerSelection} and ${computerSelection.toLowerCase()}! This is a tie!`);
         return 0;
     }
     let result = isPlayerWinner(playerSelection, computerSelection);
     if (result) {
-        // alert(`You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`);
+        document.querySelector("#roundResult").textContent = `You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`;
         console.log(`You won! ${playerSelection} beats ${computerSelection.toLowerCase()}!`);
         return 1;
     } else {
-        // alert(`You lost! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
+        document.querySelector("#roundResult").textContent = `You lost! ${computerSelection} beats ${playerSelection.toLowerCase()}!`;
         console.log(`You lost! ${computerSelection} beats ${playerSelection.toLowerCase()}!`);
         return -1;
     }   
@@ -73,16 +77,15 @@ function playRound(playerSelection, computerSelection) {
 
 function printResult(gameResult) {
     if(document.querySelector("#gameResults") === null) {
-        const div = document.createElement('div');
-        div.setAttribute("id", "gameResults");
-        document.body.appendChild(div);
+        const h2Tag = document.createElement('h2');
+        h2Tag.setAttribute("id", "gameResults");
+        document.body.appendChild(h2Tag);
     }
     const results = document.querySelector("#gameResults");
     if (gameResult) {
         results.textContent = "Man, that was tough! Seems like you won! Congratulations!";
     } else {
         results.textContent = "Haha! You lost!";
- 
     }
 }
 
@@ -105,9 +108,10 @@ function clearGameData (event) {
     }
     let gameResults = document.getElementById("gameResults");
     let replay = document.getElementById("replay");
-    console.log(gameResults, replay);
     document.body.removeChild(gameResults);
     document.body.removeChild(replay);
+    document.querySelector("#score").textContent = "";
+    document.querySelector("#roundResult").textContent = "";
     playerPoints = computerPoints = 0;
     const buttons = document.querySelectorAll('input');
     buttons.forEach(button => button.toggleAttribute("disabled"));
@@ -127,16 +131,16 @@ buttons.forEach(button => button.addEventListener("click", function(e) {
         playerPoints++;
     }
 
-    console.log(`Player: ${playerPoints}, Computer: ${computerPoints}`)
+    document.querySelector("#score").textContent = `Player: ${playerPoints} \| Computer: ${computerPoints}`;
+    console.log(`Player: ${playerPoints} \| Computer: ${computerPoints}`);
     if (playerPoints >= 5 || computerPoints >= 5) {
         printResult(playerPoints > computerPoints);
         const replay = document.createElement("button");
         replay.setAttribute("id", "replay");
-        replay.textContent = "Play another round?";
+        replay.textContent = "Try again?";
         document.body.appendChild(replay);
         buttons.forEach(button => {
             button.setAttribute("disabled", "true");
-            button.removeAttribute("class:hover"); //this needs fixing
         });
     }
 }));
