@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+    font-family: 'Bungee Spice', cursive;
+}
+
+#selectionBox {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.selection {
+    max-width: 15rem;
+    border: solid;
+    border-color: gainsboro;
+}
+
+.selection:hover {
+    transform: scale(1.05);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+.noHover {
+    
+}

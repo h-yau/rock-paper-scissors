@@ -134,8 +134,12 @@ buttons.forEach(button => button.addEventListener("click", function(e) {
         replay.setAttribute("id", "replay");
         replay.textContent = "Play another round?";
         document.body.appendChild(replay);
-        buttons.forEach(button => button.setAttribute("disabled", "true"));
+        buttons.forEach(button => {
+            button.setAttribute("disabled", "true");
+            button.removeAttribute("class:hover"); //this needs fixing
+        });
     }
 }));
+
 const replay = document.querySelector("#replay");
 document.addEventListener("click", clearGameData);
