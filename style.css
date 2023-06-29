@@ -3,14 +3,30 @@ body {
     font-family: 'Bungee Spice', cursive;
 }
 
+h1 {
+    font-size: 5rem;
+}
+
+#gameInterface {
+    display:flex;
+    justify-content: center;
+    gap: 10rem;
+}
+
 #selectionBox {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.selections {
+    display: flex;
     gap: 3rem;
 }
 
 .selection {
-    max-width: 15rem;
+    min-width: 15rem;
     border: solid;
     border-color: gainsboro;
 }
@@ -23,4 +39,10 @@ body {
 
 .noHover {
     
+}
+
+#computerSelection:hover {
+    transform: scale(1);
+    border-color: gainsboro;
+    box-shadow: 0 0 0 gainsboro;
 }
