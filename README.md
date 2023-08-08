@@ -1,5 +1,7 @@
 # rock-paper-scissors
 
+Live preview: [Rock Paper Scissors](https://nzxzn.github.io/rock-paper-scissors/)
+
 This is a simple implementation of the classic Rock-Paper-Scissors game in JavaScript. The game is played through prompts in the browser, with alerts and console.log used to provide feedback and keep track of the game progress. Each game consists of 5 rounds of Rock-Paper-Scissors.
 
 ## How to Play
